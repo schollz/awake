@@ -33,6 +33,7 @@
 engine.name = 'PolyPerc'
 
 hs = include('lib/halfsecond')
+sharer = include('lib/sharer')
 
 MusicUtil = require "musicutil"
 
@@ -191,6 +192,8 @@ end
 
 
 function init()
+  sharer.setup("awake")
+  
   for i = 1, #MusicUtil.SCALES do
     table.insert(scale_names, string.lower(MusicUtil.SCALES[i].name))
   end
@@ -199,6 +202,7 @@ function init()
   midi_out_device.event = function() end
   
   notes_off_metro.event = all_notes_off
+
   
   params:add{type = "option", id = "output", name = "output",
     options = options.OUTPUT,
